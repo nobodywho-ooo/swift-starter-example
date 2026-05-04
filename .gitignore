@@ -36,3 +36,7 @@ playground.xcworkspace
 # .swiftpm
 
 .build/
+
+*.gguf
+
+.claude/
