@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum AppTab {
-    case chat, vision, hearing, more
+    case chat, vision, audio, more
 }
 
 struct ContentView: View {
@@ -22,8 +22,8 @@ struct ContentView: View {
             Tab("Vision", systemImage: "eye", value: AppTab.vision) {
                 VisionView()
             }
-            Tab("Hearing", systemImage: "ear", value: AppTab.hearing) {
-                HearingView()
+            Tab("Audio", systemImage: "waveform", value: AppTab.audio) {
+                AudioView()
             }
             Tab("More", systemImage: "ellipsis", value: AppTab.more) {
                 MoreView()
