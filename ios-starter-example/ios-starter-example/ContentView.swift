@@ -17,7 +17,12 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab("Chat", systemImage: "message", value: AppTab.chat) {
-                ChatView()
+                ModelLoadingContainer(
+                    state: AiService.shared.chatState,
+                    load: { await AiService.shared.loadChat() }
+                ) {
+                    ChatView()
+                }
             }
             Tab("Vision", systemImage: "eye", value: AppTab.vision) {
                 VisionView()

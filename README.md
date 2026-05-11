@@ -13,3 +13,8 @@ Demonstrates the capabilities of **[NobodyWho](https://github.com/nobodywho-ooo/
 - **Tool calling** — give the model access to custom functions (e.g. weather, calculator)
 - **Vision & Hearing** — image & audio ingestion with a multimodal model
 - **Embeddings & RAG** — semantic search with an embedding model and cross-encoder reranker
+
+## Getting Started
+
+- **iOS** - go to [ios-starter-example](https://github.com/nobodywho-ooo/swift-starter-example/tree/main/ios-starter-example) folder and follow instructions
+- **macOS** - go to [macos-starter-example](https://github.com/nobodywho-ooo/swift-starter-example/tree/main/macos-starter-example) folder and follow instructions
