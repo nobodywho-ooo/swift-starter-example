@@ -12,8 +12,6 @@ struct MarkdownTextView: View {
                 colors: ColorConfiguration(
                     textColor: .black,
                     backgroundColor: .clear,
-                    codeBackgroundColor: Color.gray.opacity(0.8),
-                    codeBorderColor: Color.gray.opacity(0.3),
                     tableHeaderBackgroundColor: Color(red: 0.93, green: 0.93, blue: 0.93),
                     tableBorderColor: Color.gray.opacity(0.3),
                     theoremBorderColor: Color.gray,
