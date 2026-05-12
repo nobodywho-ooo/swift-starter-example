@@ -25,10 +25,20 @@ struct ContentView: View {
                 }
             }
             Tab("Vision", systemImage: "eye", value: AppTab.vision) {
-                VisionView()
+                ModelLoadingContainer(
+                    state: AiService.shared.visionHearingChatState,
+                    load: { await AiService.shared.loadVisionHearingChat() }
+                ) {
+                    VisionView()
+                }
             }
             Tab("Audio", systemImage: "waveform", value: AppTab.audio) {
-                AudioView()
+                ModelLoadingContainer(
+                    state: AiService.shared.visionHearingChatState,
+                    load: { await AiService.shared.loadVisionHearingChat() }
+                ) {
+                    AudioView()
+                }
             }
             Tab("More", systemImage: "ellipsis", value: AppTab.more) {
                 MoreView()
