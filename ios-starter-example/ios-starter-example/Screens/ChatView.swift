@@ -2,6 +2,9 @@ import NobodyWho
 import SwiftUI
 
 struct ChatView: View {
+    private let inputBarBottomPadding: CGFloat = 14
+    private let contentExtraPadding: CGFloat = 24
+
     private var aiService = AiService.shared
     @State private var messages: [ChatMessage] = []
     @State private var inputText = ""
@@ -26,7 +29,7 @@ struct ChatView: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.top, 16)
-                    .padding(.bottom, InputBar.height + 32)
+                    .padding(.bottom, InputBar.height + inputBarBottomPadding + contentExtraPadding)
                 }
                 .onChange(of: messages.last?.content) {
                     withAnimation {
@@ -40,7 +43,7 @@ struct ChatView: View {
                         onSend: send,
                         onStop: stopStreaming
                     )
-                    .padding(.bottom, 14)
+                    .padding(.bottom, inputBarBottomPadding)
                 }
             }
             .navigationTitle("Chat")
