@@ -31,8 +31,7 @@ struct VisionView: View {
                         ProgressView()
                             .frame(maxWidth: .infinity)
                     } else if !result.isEmpty {
-                        Text(result)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        MarkdownTextView(text: result)
                     }
                 }
                 .padding()
@@ -71,7 +70,8 @@ private struct BundleImage: View {
 
     var body: some View {
         if let path = Bundle.main.path(forResource: name, ofType: "png"),
-           let uiImage = UIImage(contentsOfFile: path) {
+           let uiImage = UIImage(contentsOfFile: path)
+        {
             Image(uiImage: uiImage)
                 .resizable()
                 .scaledToFit()

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5377D6AC2FB3537F0081091F /* LLMStream in Frameworks */ = {isa = PBXBuildFile; productRef = 5377D6AB2FB3537F0081091F /* LLMStream */; };
 		53BA5FA32FA8C8BB00E1B183 /* NobodyWho in Frameworks */ = {isa = PBXBuildFile; productRef = 53BA5FA22FA8C8BB00E1B183 /* NobodyWho */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5377D6AC2FB3537F0081091F /* LLMStream in Frameworks */,
 				53BA5FA32FA8C8BB00E1B183 /* NobodyWho in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +73,7 @@
 			name = "ios-starter-example";
 			packageProductDependencies = (
 				53BA5FA22FA8C8BB00E1B183 /* NobodyWho */,
+				5377D6AB2FB3537F0081091F /* LLMStream */,
 			);
 			productName = "ios-starter-example";
 			productReference = 53BA5F5B2FA8C69300E1B183 /* ios-starter-example.app */;
@@ -102,6 +105,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				53BA5FA12FA8C8BB00E1B183 /* XCRemoteSwiftPackageReference "nobodywho-swift" */,
+				5377D6AA2FB3537F0081091F /* XCRemoteSwiftPackageReference "LLMStream" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 53BA5F5C2FA8C69300E1B183 /* Products */;
@@ -343,6 +347,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5377D6AA2FB3537F0081091F /* XCRemoteSwiftPackageReference "LLMStream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/synth-inc/LLMStream";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		53BA5FA12FA8C8BB00E1B183 /* XCRemoteSwiftPackageReference "nobodywho-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nobodywho-ooo/nobodywho-swift";
@@ -354,6 +366,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5377D6AB2FB3537F0081091F /* LLMStream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5377D6AA2FB3537F0081091F /* XCRemoteSwiftPackageReference "LLMStream" */;
+			productName = LLMStream;
+		};
 		53BA5FA22FA8C8BB00E1B183 /* NobodyWho */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 53BA5FA12FA8C8BB00E1B183 /* XCRemoteSwiftPackageReference "nobodywho-swift" */;

@@ -12,18 +12,18 @@ struct AudioView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Transcribe audio.mp3")
                         .foregroundStyle(.secondary)
-                    
+
                     Button(isStreaming ? "Getting speech..." : "Get speech") {
                         Task { await transcribe() }
                     }
                     .buttonStyle(.bordered)
                     .disabled(isStreaming)
-                    
+
                     if isStreaming && result.isEmpty {
                         ProgressView()
                             .frame(maxWidth: .infinity)
                     } else if !result.isEmpty {
-                        Text(result)
+                        MarkdownTextView(text: result)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

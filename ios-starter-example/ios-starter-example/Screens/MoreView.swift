@@ -5,11 +5,21 @@ struct MoreView: View {
 
     private var aiService = AiService.shared
 
-    private var isEncoderDisabled: Bool { aiService.encoderState != .ready }
-    private var isEncoderLoading: Bool { aiService.encoderState == .loading }
+    private var isEncoderDisabled: Bool {
+        aiService.encoderState != .ready
+    }
 
-    private var isRagDisabled: Bool { aiService.crossEncoderState != .ready || aiService.encoderState != .ready }
-    private var isRagLoading: Bool { aiService.crossEncoderState == .loading || aiService.encoderState == .loading }
+    private var isEncoderLoading: Bool {
+        aiService.encoderState == .loading
+    }
+
+    private var isRagDisabled: Bool {
+        aiService.crossEncoderState != .ready || aiService.encoderState != .ready
+    }
+
+    private var isRagLoading: Bool {
+        aiService.crossEncoderState == .loading || aiService.encoderState == .loading
+    }
 
     var body: some View {
         NavigationStack(path: $path) {
