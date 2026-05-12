@@ -44,7 +44,9 @@ struct EmbeddingsView: View {
             }
             .padding()
         }
+        .padding(.vertical, 12)
         .navigationTitle("Embeddings")
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     private func runEmbeddings() async {
