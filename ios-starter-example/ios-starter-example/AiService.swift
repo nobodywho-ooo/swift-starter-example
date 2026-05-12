@@ -2,7 +2,7 @@ import Foundation
 import NobodyWho
 import Observation
 
-enum ModelState {
+enum ModelState: Equatable {
     case notLoaded
     case loading
     case ready
