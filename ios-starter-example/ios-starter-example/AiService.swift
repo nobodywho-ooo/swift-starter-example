@@ -48,7 +48,7 @@ final class AiService {
         sampler: SamplerConfig? = nil,
         contextSize: UInt32 = 4096
     ) async {
-        guard loading.insert(.chat).inserted else { return }
+        guard chatState != .ready, loading.insert(.chat).inserted else { return }
         chatState = .loading
 
         do {
@@ -77,7 +77,7 @@ final class AiService {
         sampler: SamplerConfig? = nil,
         contextSize: UInt32 = 4096
     ) async {
-        guard loading.insert(.toolCallingChat).inserted else { return }
+        guard toolCallingChatState != .ready, loading.insert(.toolCallingChat).inserted else { return }
         toolCallingChatState = .loading
 
         do {
@@ -105,7 +105,7 @@ final class AiService {
         systemPrompt: String? = nil,
         contextSize: UInt32 = 4096
     ) async {
-        guard loading.insert(.visionHearingChat).inserted else { return }
+        guard visionHearingChatState != .ready, loading.insert(.visionHearingChat).inserted else { return }
         visionHearingChatState = .loading
 
         do {
@@ -135,7 +135,7 @@ final class AiService {
         useGpu: Bool = true,
         contextSize: UInt32? = nil
     ) async {
-        guard loading.insert(.encoder).inserted else { return }
+        guard encoderState != .ready, loading.insert(.encoder).inserted else { return }
         encoderState = .loading
 
         do {
@@ -159,7 +159,7 @@ final class AiService {
         useGpu: Bool = true,
         contextSize: UInt32? = nil
     ) async {
-        guard loading.insert(.crossEncoder).inserted else { return }
+        guard crossEncoderState != .ready, loading.insert(.crossEncoder).inserted else { return }
         crossEncoderState = .loading
 
         do {
