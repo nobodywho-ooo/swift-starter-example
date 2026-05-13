@@ -56,6 +56,7 @@ struct ChatView: View {
         }
         .navigationTitle("Chat")
         .contentMargins(.bottom, 0, for: .scrollIndicators)
+        .onDisappear { streamingTask?.cancel() }
     }
 
     private func send() {

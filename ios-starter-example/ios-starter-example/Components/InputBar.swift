@@ -6,6 +6,8 @@ struct InputBar: View {
     var onSend: () -> Void
     var onStop: () -> Void
 
+    @FocusState private var isFocused: Bool
+
     private static let verticalPadding: CGFloat = 10
     private static let iconSize: CGFloat = 24
     private static let lineHeight: CGFloat = UIFont.preferredFont(forTextStyle: .body).lineHeight
@@ -20,6 +22,7 @@ struct InputBar: View {
                 .lineLimit(1 ... 5)
                 .padding(.horizontal, 12)
                 .padding(.vertical, Self.verticalPadding)
+                .focused($isFocused)
                 .disabled(isStreaming)
 
             if isStreaming {
@@ -29,12 +32,16 @@ struct InputBar: View {
                         .foregroundStyle(.red)
                 }
             } else {
-                Button(action: onSend) {
+                Button {
+                    isFocused = false
+                    onSend()
+                } label: {
+                    let empty = text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                     Text("Send")
-                        .fontWeight(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .semibold : .medium)
-                        .foregroundStyle(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .secondary : Color.accentColor)
+                        .fontWeight(empty ? .semibold : .medium)
+                        .foregroundStyle(empty ? .secondary : Color.accentColor)
                 }
-                .disabled(text.isEmpty)
+                .disabled(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
         }
         .padding(.horizontal, 12)

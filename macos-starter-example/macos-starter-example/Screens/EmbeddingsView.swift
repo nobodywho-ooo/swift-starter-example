@@ -14,6 +14,7 @@ struct EmbeddingsView: View {
     private var aiService = AiService.shared
     @State private var isProcessing = false
     @State private var bestMatch = ""
+    @State private var errorMessage: String?
 
     var body: some View {
         ScrollView {
@@ -36,6 +37,9 @@ struct EmbeddingsView: View {
                 if isProcessing && bestMatch.isEmpty {
                     ProgressView()
                         .frame(maxWidth: .infinity)
+                } else if let errorMessage {
+                    Text(errorMessage)
+                        .foregroundStyle(.red)
                 } else if !bestMatch.isEmpty {
                     Text("Query: \(query)")
                         .italic()
@@ -52,6 +56,7 @@ struct EmbeddingsView: View {
         guard let encoder = aiService.encoder else { return }
 
         bestMatch = ""
+        errorMessage = nil
         isProcessing = true
         defer { isProcessing = false }
 
@@ -74,7 +79,7 @@ struct EmbeddingsView: View {
             }
             bestMatch = documents[bestIdx]
         } catch {
-            print("EmbeddingsView error: \(error)")
+            errorMessage = error.localizedDescription
         }
     }
 }

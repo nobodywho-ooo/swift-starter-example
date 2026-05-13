@@ -4,15 +4,22 @@ import SwiftUI
 struct MarkdownTextView: View {
     let text: String
 
+    @Environment(\.colorScheme) private var colorScheme
+
     var body: some View {
+        let textColor: Color = colorScheme == .dark ? .white : .black
+        let tableHeaderBackgroundColor: Color = colorScheme == .dark
+        ? Color(white: 0.2)
+        : Color(red: 0.93, green: 0.93, blue: 0.93)
+        
         LLMStreamView(
             text: text,
             configuration: LLMStreamConfiguration(
                 font: FontConfiguration(size: 16.0),
                 colors: ColorConfiguration(
-                    textColor: Color(uiColor: .label),
+                    textColor: textColor,
                     backgroundColor: .clear,
-                    tableHeaderBackgroundColor: Color(red: 0.93, green: 0.93, blue: 0.93),
+                    tableHeaderBackgroundColor: tableHeaderBackgroundColor,
                     tableBorderColor: Color.gray.opacity(0.3),
                     theoremBorderColor: Color.gray,
                     proofBorderColor: Color.gray
@@ -23,6 +30,7 @@ struct MarkdownTextView: View {
                 UIApplication.shared.open(url)
             }
         }
+        .id(colorScheme)
     }
 }
 

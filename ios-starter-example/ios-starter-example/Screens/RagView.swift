@@ -32,6 +32,7 @@ struct RagView: View {
     private var aiService = AiService.shared
     @State private var isProcessing = false
     @State private var topResults: [String] = []
+    @State private var errorMessage: String?
 
     var body: some View {
         ScrollView {
@@ -48,6 +49,9 @@ struct RagView: View {
                 if isProcessing && topResults.isEmpty {
                     ProgressView()
                         .frame(maxWidth: .infinity)
+                } else if let errorMessage {
+                    Text(errorMessage)
+                        .foregroundStyle(.red)
                 } else if !topResults.isEmpty {
                     Text("Top matches:")
                         .bold()
@@ -69,6 +73,7 @@ struct RagView: View {
               let crossEncoder = aiService.crossEncoder else { return }
 
         topResults = []
+        errorMessage = nil
         isProcessing = true
         defer { isProcessing = false }
 
@@ -95,7 +100,7 @@ struct RagView: View {
 
             topResults = ranked.prefix(3).map(\.0)
         } catch {
-            print("RagView error: \(error)")
+            errorMessage = error.localizedDescription
         }
     }
 }

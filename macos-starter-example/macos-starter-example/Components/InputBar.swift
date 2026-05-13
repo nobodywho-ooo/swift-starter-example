@@ -29,12 +29,13 @@ struct InputBar: View {
                 .buttonStyle(.plain)
             } else {
                 Button(action: onSend) {
+                    let empty = text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                     Text("Send")
-                        .fontWeight(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .semibold : .medium)
-                        .foregroundStyle(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .secondary : Color.accentColor)
+                        .fontWeight(empty ? .semibold : .medium)
+                        .foregroundStyle(empty ? .secondary : Color.accentColor)
                 }
                 .buttonStyle(.plain)
-                .disabled(text.isEmpty)
+                .disabled(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
         }
         .padding(.horizontal, 12)
