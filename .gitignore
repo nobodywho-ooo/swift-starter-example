@@ -5,8 +5,11 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-## Shared workspace data
-xcshareddata/
+## Shared workspace data (keep only Package.resolved tracked)
+**/xcshareddata/*
+!**/xcshareddata/swiftpm
+**/xcshareddata/swiftpm/*
+!**/xcshareddata/swiftpm/Package.resolved
 
 ## User settings
 xcuserdata/

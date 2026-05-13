@@ -1,0 +1,33 @@
+{
+  "originHash" : "7ed2fa9f1bbb4a27724dff7a34efc726dfb12096ddedd461cc424bedf5091a58",
+  "pins" : [
+    {
+      "identity" : "llmstream",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/synth-inc/LLMStream",
+      "state" : {
+        "revision" : "765ff3d21b4e99c0128193d5370262c4bdef4b33",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "nobodywho-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nobodywho-ooo/nobodywho-swift",
+      "state" : {
+        "revision" : "489efa71aaa4eceb212e01055f76fe5f3d633529",
+        "version" : "0.2.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}
