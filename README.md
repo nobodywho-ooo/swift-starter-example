@@ -9,6 +9,8 @@
 
 Demonstrates the capabilities of **[NobodyWho](https://github.com/nobodywho-ooo/nobodywho)**, a library designed to run LLMs locally and efficiently on any device. You will find two examples, `ios-starter-example` and `macos-starter-example`.
 
+You can find NobodyWho in the Swift Package Index [here](https://swiftpackageindex.com/nobodywho-ooo/nobodywho-swift).
+
 ## Features
 
 - **Chat** — stream responses from a local LLM
