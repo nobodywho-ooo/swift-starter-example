@@ -21,7 +21,7 @@ struct MessageListItem: View {
                 Spacer(minLength: 60)
                 Text(message.content)
                     .padding(12)
-                    .background(Color(.systemGray5))
+                    .background(Color(.systemGray6))
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             }
         case .assistant:

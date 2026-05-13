@@ -33,9 +33,7 @@ struct InputBar: View {
         }
         .padding(.horizontal, 12)
         .frame(minHeight: Self.height)
-        .background(.regularMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 24))
-        .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
+        .glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: 24))
         .padding(.horizontal, 16)
     }
 }
