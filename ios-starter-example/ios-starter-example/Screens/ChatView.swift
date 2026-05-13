@@ -2,10 +2,8 @@ import NobodyWho
 import SwiftUI
 
 struct ChatView: View {
-    private let inputBarBottomPadding: CGFloat = 14
-    private let contentExtraPadding: CGFloat = 16
-
     private var aiService = AiService.shared
+
     @State private var messages: [ChatMessage] = []
     @State private var inputText = ""
     @State private var isStreaming = false
@@ -40,7 +38,6 @@ struct ChatView: View {
                         }
                         .padding(.horizontal, 16)
                         .padding(.top, 16)
-                        .padding(.bottom, InputBar.height + inputBarBottomPadding + contentExtraPadding)
                     }
                 }
                 .onChange(of: messages.last?.content) {
@@ -48,14 +45,14 @@ struct ChatView: View {
                         proxy.scrollTo(messages.last?.id, anchor: .bottom)
                     }
                 }
-                .overlay(alignment: .bottom) {
+                .safeAreaInset(edge: .bottom) {
                     InputBar(
                         text: $inputText,
                         isStreaming: isStreaming,
                         onSend: send,
                         onStop: stopStreaming
                     )
-                    .padding(.bottom, inputBarBottomPadding)
+                    .padding(.bottom, 14)
                 }
             }
             .navigationTitle("Chat")
