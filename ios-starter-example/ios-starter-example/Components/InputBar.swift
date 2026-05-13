@@ -6,20 +6,26 @@ struct InputBar: View {
     var onSend: () -> Void
     var onStop: () -> Void
 
-    static let height: CGFloat = 48
+    private static let verticalPadding: CGFloat = 10
+    private static let iconSize: CGFloat = 24
+    private static let lineHeight: CGFloat = UIFont.preferredFont(forTextStyle: .body).lineHeight
+
+    static var height: CGFloat {
+        lineHeight > iconSize ? lineHeight : iconSize + verticalPadding * 2
+    }
 
     var body: some View {
         HStack(spacing: 8) {
             TextField(isStreaming ? "Thinking..." : "Ask something...", text: $text, axis: .vertical)
                 .lineLimit(1 ... 5)
                 .padding(.horizontal, 12)
-                .padding(.vertical, 10)
+                .padding(.vertical, Self.verticalPadding)
                 .disabled(isStreaming)
 
             if isStreaming {
                 Button(action: onStop) {
                     Image(systemName: "stop.circle")
-                        .font(.system(size: 24))
+                        .font(.system(size: Self.iconSize))
                         .foregroundStyle(.red)
                 }
             } else {

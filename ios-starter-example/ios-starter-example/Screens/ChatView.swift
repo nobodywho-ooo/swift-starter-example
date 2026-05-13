@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ChatView: View {
     private let inputBarBottomPadding: CGFloat = 14
-    private let contentExtraPadding: CGFloat = 24
+    private let contentExtraPadding: CGFloat = 16
 
     private var aiService = AiService.shared
     @State private var messages: [ChatMessage] = []
