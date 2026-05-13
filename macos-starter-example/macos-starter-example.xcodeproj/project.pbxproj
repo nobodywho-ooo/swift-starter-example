@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5377D7322FB46CAD0081091F /* LLMStream in Frameworks */ = {isa = PBXBuildFile; productRef = 5377D7312FB46CAD0081091F /* LLMStream */; };
 		53BA5FA62FA8C8BF00E1B183 /* NobodyWho in Frameworks */ = {isa = PBXBuildFile; productRef = 53BA5FA52FA8C8BF00E1B183 /* NobodyWho */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5377D7322FB46CAD0081091F /* LLMStream in Frameworks */,
 				53BA5FA62FA8C8BF00E1B183 /* NobodyWho in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +73,7 @@
 			name = "macos-starter-example";
 			packageProductDependencies = (
 				53BA5FA52FA8C8BF00E1B183 /* NobodyWho */,
+				5377D7312FB46CAD0081091F /* LLMStream */,
 			);
 			productName = "macos-starter-example";
 			productReference = 53BA5F8D2FA8C82900E1B183 /* macos-starter-example.app */;
@@ -102,6 +105,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				53BA5FA42FA8C8BF00E1B183 /* XCRemoteSwiftPackageReference "nobodywho-swift" */,
+				5377D7302FB46CAD0081091F /* XCRemoteSwiftPackageReference "LLMStream" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 53BA5F8E2FA8C82900E1B183 /* Products */;
@@ -257,6 +261,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "macos-starter-example/macos-starter-example.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -264,6 +269,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NobodyWho;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -287,6 +293,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "macos-starter-example/macos-starter-example.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -294,6 +301,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NobodyWho;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -336,6 +344,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5377D7302FB46CAD0081091F /* XCRemoteSwiftPackageReference "LLMStream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/synth-inc/LLMStream";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		53BA5FA42FA8C8BF00E1B183 /* XCRemoteSwiftPackageReference "nobodywho-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nobodywho-ooo/nobodywho-swift";
@@ -347,6 +363,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5377D7312FB46CAD0081091F /* LLMStream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5377D7302FB46CAD0081091F /* XCRemoteSwiftPackageReference "LLMStream" */;
+			productName = LLMStream;
+		};
 		53BA5FA52FA8C8BF00E1B183 /* NobodyWho */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 53BA5FA42FA8C8BF00E1B183 /* XCRemoteSwiftPackageReference "nobodywho-swift" */;

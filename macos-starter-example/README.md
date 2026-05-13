@@ -3,7 +3,7 @@
 [![Mastodon](https://img.shields.io/badge/Mastodon-6364FF?logo=mastodon&logoColor=fff&style=flat-square)](https://mastodon.gamedev.place/@nobodywho)
 [![Docs](https://img.shields.io/badge/Docs-lightblue?style=flat-square)](https://docs.nobodywho.ooo)
 
-# NobodyWho iOS Starter App
+# NobodyWho macOS Starter App
 
 Demonstrates the capabilities of **[NobodyWho](https://github.com/nobodywho-ooo/nobodywho)**, a library designed to run LLMs locally and efficiently on any device.
 
@@ -25,11 +25,10 @@ In production, we recommend downloading models on demand — only when needed (y
 #### Automated (Recommended)
 
 **Chat only**
-Minimal setup - fast inference, even on old iPhone: `./scripts/download_chat.sh`
+For the minimal setup, run the following: `./scripts/download_chat.sh`
 
 **All features**
-Chat + vision + hearing + embeddings + reranker
-Downloads Gemma 4, which runs well on latest iPhone pro, but might not work or be slow on old iPhone: `./scripts/download_chat_multimodal.sh && ./scripts/download_embedding_rerank.sh`
+For Chat + vision + hearing + embeddings + reranker, run the following: `./scripts/download_chat_multimodal.sh && ./scripts/download_embedding_rerank.sh`
 
 The scripts download models from Hugging Face, rename them, and place them in the `Assets/` folder inside the project.
 
@@ -55,7 +54,8 @@ You can use any `.gguf` model from [Hugging Face](https://huggingface.co/models)
 
 **Multimodal models** — some examples by modality: [Vision](https://huggingface.co/LiquidAI/LFM2-VL-450M-GGUF/tree/main), [Hearing](https://huggingface.co/ggml-org/ultravox-v0_5-llama-3_2-1b-GGUF/tree/main), [Vision + Hearing](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/tree/main)
 
-Compatibility notes:
+Notes:
 
 - Most GGUF models will work, but some may fail due to formatting issues. Here are some [models](https://huggingface.co/NobodyWho/collections) we have made sure they work perfectly.
-- Models under 1 GB tend to run smoothly. As a general rule, the device should have at least twice the available RAM as the model file size. Note that available RAM differs from total RAM — iOS typically reserves around 1–2 GB for the kernel and system processes.
+- Models under 1 GB tend to run smoothly. As a general rule, the computer should have at least twice the available RAM as the model file size. Note that available RAM differs from total RAM — macos can reserves between 4–8 GB for the kernel and system processes.
+- Nobodywho library works offline, but LLMStream package uses a WKWebView that loads JavaScript from external CDNs (markdown-it, MathJax), which is why there is an entitlements file to enable network requests.
