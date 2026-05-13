@@ -15,21 +15,33 @@ struct ChatView: View {
         NavigationStack {
             ScrollViewReader { proxy in
                 ScrollView {
-                    LazyVStack(spacing: 12) {
-                        ForEach(messages) { message in
-                            if message.content.isEmpty {
-                                ProgressView()
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .id(message.id)
-                            } else {
-                                MessageListItem(message: message)
-                                    .id(message.id)
+                    if messages.isEmpty {
+                        ContentUnavailableView {
+                            VStack(spacing: 8) {
+                                Image(systemName: "bubble.fill")
+                                    .font(.system(size: 56))
+                                    .foregroundStyle(Color(uiColor: .systemGray6))
+                                Text("Start a chat").foregroundStyle(Color(uiColor: .gray))
                             }
                         }
+                        .padding(.top, 150)
+                    } else {
+                        LazyVStack(spacing: 12) {
+                            ForEach(messages) { message in
+                                if message.content.isEmpty {
+                                    ProgressView()
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .id(message.id)
+                                } else {
+                                    MessageListItem(message: message)
+                                        .id(message.id)
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.top, 16)
+                        .padding(.bottom, InputBar.height + inputBarBottomPadding + contentExtraPadding)
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 16)
-                    .padding(.bottom, InputBar.height + inputBarBottomPadding + contentExtraPadding)
                 }
                 .onChange(of: messages.last?.content) {
                     withAnimation {
