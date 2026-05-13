@@ -10,7 +10,7 @@ struct MarkdownTextView: View {
             configuration: LLMStreamConfiguration(
                 font: FontConfiguration(size: 16.0),
                 colors: ColorConfiguration(
-                    textColor: .black,
+                    textColor: Color(uiColor: .label),
                     backgroundColor: .clear,
                     tableHeaderBackgroundColor: Color(red: 0.93, green: 0.93, blue: 0.93),
                     tableBorderColor: Color.gray.opacity(0.3),
