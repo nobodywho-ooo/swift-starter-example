@@ -55,8 +55,13 @@ struct VisionView: View {
             Prompt.text("Also tell me what you see in the second image."),
             Prompt.image(image2Path),
         ])
-        for await token in chat.ask(prompt) {
-            result += token
+        
+        do {
+            for try await token in chat.ask(prompt) {
+                result += token
+            }
+        } catch {
+            result = "Error: \(error.localizedDescription)"
         }
     }
 }

@@ -116,7 +116,7 @@ final class AiService {
                 useGpu: useGpu,
                 projectionModelPath: projectionPath
             )
-            visionHearingChat = Chat(
+            visionHearingChat = try Chat(
                 model: model,
                 systemPrompt: systemPrompt,
                 contextSize: contextSize

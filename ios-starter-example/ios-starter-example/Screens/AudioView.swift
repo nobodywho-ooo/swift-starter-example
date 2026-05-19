@@ -45,8 +45,12 @@ struct AudioView: View {
             Prompt.text("Tell me what you hear in the audio. Transcribe"),
             Prompt.audio(audioPath),
         ])
-        for await token in chat.ask(prompt) {
-            result += token
+        do {
+            for try await token in chat.ask(prompt) {
+                result += token
+            }
+        } catch {
+            result = "Error: \(error.localizedDescription)"
         }
     }
 }

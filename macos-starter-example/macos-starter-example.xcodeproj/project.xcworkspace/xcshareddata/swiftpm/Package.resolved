@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nobodywho-ooo/nobodywho-swift",
       "state" : {
-        "revision" : "489efa71aaa4eceb212e01055f76fe5f3d633529",
-        "version" : "0.2.0"
+        "revision" : "09c8d325991b70a2043afd03fa594797583fd401",
+        "version" : "2.0.0"
       }
     },
     {

@@ -360,7 +360,7 @@
 			repositoryURL = "https://github.com/nobodywho-ooo/nobodywho-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

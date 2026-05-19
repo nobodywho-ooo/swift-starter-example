@@ -77,11 +77,17 @@ struct ChatView: View {
             var accumulated = ""
             let prompt = Prompt([Prompt.text(userInput)])
 
-            for await token in chat.ask(prompt) {
-                if Task.isCancelled { break }
-                accumulated += token
+            do {
+                for try await token in chat.ask(prompt) {
+                    if Task.isCancelled { break }
+                    accumulated += token
+                    if let lastIndex = messages.indices.last {
+                        messages[lastIndex].content = accumulated
+                    }
+                }
+            } catch {
                 if let lastIndex = messages.indices.last {
-                    messages[lastIndex].content = accumulated
+                    messages[lastIndex].content = "Error: \(error.localizedDescription)"
                 }
             }
         }
