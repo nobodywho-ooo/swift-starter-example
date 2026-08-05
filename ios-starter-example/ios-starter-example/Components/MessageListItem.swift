@@ -13,6 +13,7 @@ struct ChatMessage: Identifiable {
 
 struct MessageListItem: View {
     let message: ChatMessage
+    var isStreaming: Bool = false
 
     var body: some View {
         switch message.role {
@@ -25,10 +26,39 @@ struct MessageListItem: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             }
         case .assistant:
-            HStack {
+            VStack(alignment: .leading, spacing: 0) {
                 MarkdownTextView(text: message.content)
+                if !isStreaming {
+                    SpeakerButton(message: message)
+                }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
+    }
+}
+
+private struct SpeakerButton: View {
+    let message: ChatMessage
+    var speech = SpeechManager.shared
+
+    var body: some View {
+        Button {
+            speech.toggle(message)
+        } label: {
+            Group {
+                if speech.isPreparing(message.id) {
+                    ProgressView()
+                        .controlSize(.small)
+                } else {
+                    Image(systemName: speech.isPlaying(message.id) ? "stop.circle.fill" : "speaker.wave.2.fill")
+                }
+            }
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+            .frame(width: 28, height: 14, alignment: .leading)
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(speech.isPlaying(message.id) ? "Stop speaking message" : "Speak message")
     }
 }
 

@@ -57,7 +57,8 @@ struct VisionView: View {
         ])
         
         do {
-            for try await token in chat.ask(prompt) {
+            let stream = try chat.ask(prompt)
+            for try await token in stream {
                 result += token
             }
         } catch {

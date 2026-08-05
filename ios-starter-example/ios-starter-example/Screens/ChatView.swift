@@ -31,18 +31,16 @@ struct ChatView: View {
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .id(message.id)
                                 } else {
-                                    MessageListItem(message: message)
-                                        .id(message.id)
+                                    MessageListItem(
+                                        message: message,
+                                        isStreaming: isStreaming && message.id == messages.last?.id
+                                    )
+                                    .id(message.id)
                                 }
                             }
                         }
                         .padding(.horizontal, 16)
                         .padding(.top, 16)
-                    }
-                }
-                .onChange(of: messages.last?.content) {
-                    withAnimation {
-                        proxy.scrollTo(messages.last?.id, anchor: .bottom)
                     }
                 }
                 .safeAreaInset(edge: .bottom) {
@@ -57,7 +55,7 @@ struct ChatView: View {
             }
             .navigationTitle("Chat")
             .contentMargins(.bottom, 0, for: .scrollIndicators)
-            .onDisappear { streamingTask?.cancel() }
+            .onDisappear { stopStreaming() }
         }
     }
 
@@ -80,7 +78,8 @@ struct ChatView: View {
             let prompt = Prompt([Prompt.text(userInput)])
 
             do {
-                for try await token in chat.ask(prompt) {
+                let stream = try chat.ask(prompt)
+                for try await token in stream {
                     if Task.isCancelled { break }
                     accumulated += token
                     if let lastIndex = messages.indices.last {
@@ -96,6 +95,7 @@ struct ChatView: View {
     }
 
     private func stopStreaming() {
+        aiService.chat?.stopGeneration()
         streamingTask?.cancel()
         streamingTask = nil
     }

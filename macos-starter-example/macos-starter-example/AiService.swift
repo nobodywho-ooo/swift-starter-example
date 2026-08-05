@@ -18,15 +18,17 @@ final class AiService {
     private(set) var visionHearingChatState: ModelState = .notLoaded
     private(set) var encoderState: ModelState = .notLoaded
     private(set) var crossEncoderState: ModelState = .notLoaded
+    private(set) var ttsState: ModelState = .notLoaded
 
     private(set) var chat: Chat?
     private(set) var toolCallingChat: Chat?
     private(set) var visionHearingChat: Chat?
     private(set) var encoder: Encoder?
     private(set) var crossEncoder: CrossEncoder?
+    private(set) var tts: Tts?
 
     private enum Slot: Hashable {
-        case chat, toolCallingChat, visionHearingChat, encoder, crossEncoder
+        case chat, toolCallingChat, visionHearingChat, encoder, crossEncoder, tts
     }
 
     private var loading: Set<Slot> = []
@@ -177,6 +179,30 @@ final class AiService {
         loading.remove(.crossEncoder)
     }
 
+    // MARK: - Text-to-speech
+
+    func loadTts(
+        source: String = "hf://NobodyWho/Kokoro-82M",
+        voice: String = "bf_emma",
+        language: String = "en-gb"
+    ) async {
+        guard ttsState != .ready, loading.insert(.tts).inserted else { return }
+        ttsState = .loading
+
+        do {
+            tts = try await Tts.load(
+                source: source,
+                voice: voice,
+                language: language
+            )
+            ttsState = .ready
+        } catch {
+            ttsState = .error(error.localizedDescription)
+        }
+
+        loading.remove(.tts)
+    }
+
     // MARK: - Dispose
 
     func dispose() {
@@ -185,12 +211,14 @@ final class AiService {
         visionHearingChat = nil
         encoder = nil
         crossEncoder = nil
+        tts = nil
         loading.removeAll()
         chatState = .notLoaded
         toolCallingChatState = .notLoaded
         visionHearingChatState = .notLoaded
         encoderState = .notLoaded
         crossEncoderState = .notLoaded
+        ttsState = .notLoaded
     }
 
     // MARK: - Helpers
