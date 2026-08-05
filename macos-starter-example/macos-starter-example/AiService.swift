@@ -19,6 +19,7 @@ final class AiService {
     private(set) var encoderState: ModelState = .notLoaded
     private(set) var crossEncoderState: ModelState = .notLoaded
     private(set) var ttsState: ModelState = .notLoaded
+    private(set) var sttState: ModelState = .notLoaded
 
     private(set) var chat: Chat?
     private(set) var toolCallingChat: Chat?
@@ -26,9 +27,10 @@ final class AiService {
     private(set) var encoder: Encoder?
     private(set) var crossEncoder: CrossEncoder?
     private(set) var tts: Tts?
+    private(set) var stt: STT?
 
     private enum Slot: Hashable {
-        case chat, toolCallingChat, visionHearingChat, encoder, crossEncoder, tts
+        case chat, toolCallingChat, visionHearingChat, encoder, crossEncoder, tts, stt
     }
 
     private var loading: Set<Slot> = []
@@ -203,6 +205,30 @@ final class AiService {
         loading.remove(.tts)
     }
 
+    // MARK: - Speech-to-text
+
+    func loadStt(
+        source: String = "hf://onnx-community/whisper-base",
+        language: String? = nil,
+        quantization: String? = nil
+    ) async {
+        guard sttState != .ready, loading.insert(.stt).inserted else { return }
+        sttState = .loading
+
+        do {
+            // `STT.init` is synchronous and may download the model on first use,
+            // so build it off the main actor to keep the UI responsive.
+            stt = try await Task.detached(priority: .userInitiated) {
+                try STT(source: source, language: language, quantization: quantization)
+            }.value
+            sttState = .ready
+        } catch {
+            sttState = .error(error.localizedDescription)
+        }
+
+        loading.remove(.stt)
+    }
+
     // MARK: - Dispose
 
     func dispose() {
@@ -212,6 +238,7 @@ final class AiService {
         encoder = nil
         crossEncoder = nil
         tts = nil
+        stt = nil
         loading.removeAll()
         chatState = .notLoaded
         toolCallingChatState = .notLoaded
@@ -219,6 +246,7 @@ final class AiService {
         encoderState = .notLoaded
         crossEncoderState = .notLoaded
         ttsState = .notLoaded
+        sttState = .notLoaded
     }
 
     // MARK: - Helpers
