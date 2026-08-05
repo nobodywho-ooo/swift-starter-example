@@ -17,6 +17,8 @@ You can find NobodyWho in the Swift Package Index [here](https://swiftpackageind
 - **Tool calling** — give the model access to custom functions (e.g. weather, calculator)
 - **Vision & Hearing** — image & audio ingestion with a multimodal model
 - **Embeddings & RAG** — semantic search with an embedding model and cross-encoder reranker
+- **Speech to Text** — transcribe audio into text (STT)
+- **Text to Speech** — generate natural-sounding speech from text (TTS)
 
 ## Getting Started
 
